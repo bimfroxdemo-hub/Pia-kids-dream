@@ -1,107 +1,120 @@
 import { FaInstagram } from "react-icons/fa";
 import flower from "../assets/backimg3.png";
-
+import post1 from "../assets/instapostimg/post-1.JPEG";
+import post2 from "../assets/instapostimg/post-2.JPEG";
+import post3 from "../assets/instapostimg/post-3.JPEG";
+import post4 from "../assets/instapostimg/post-4.JPEG";
+import post5 from "../assets/instapostimg/post-5.JPG";
+import post6 from "../assets/instapostimg/post-6.JPEG";
+import post7 from "../assets/instapostimg/post-7.JPEG";
+import post8 from "../assets/instapostimg/post-8.JPEG";
+import post9 from "../assets/instapostimg/post-9.JPEG";
+import post10 from "../assets/instapostimg/post-10.JPEG";
+import post11 from "../assets/instapostimg/post-11.JPEG";
+import post12 from "../assets/instapostimg/post-12.JPEG";
+import post13 from "../assets/instapostimg/post-13.JPEG";
+import post14 from "../assets/instapostimg/post-14.JPEG";
 const posts = [
   {
     id: 1,
-    postId: "DOwI13AjCro",
-    link: "https://www.instagram.com/reel/DOwI13AjCro/",
+    image: post1,
+    link: "https://www.instagram.com/p/DZzy1lGDGvW/?utm_source=ig_web_button_share_sheet",
     desc: "Kids fashion collection 👗",
   },
 
   {
     id: 2,
-    postId: "DYV88pMjEdK",
-    link: "https://www.instagram.com/p/DYV88pMjEdK/?utm_source=ig_web_button_share_sheet",
+    image: post2,
+    link: "https://www.instagram.com/p/DaF7JysjDyH/?utm_source=ig_web_button_share_sheet",
     desc: "New arrivals 💖",
   },
 
   {
     id: 3,
-    postId: "DXpbxNJDPlC",
-    link: "https://www.instagram.com/reel/DXpbxNJDPlC/",
+    image: post3,
+    link: "https://www.instagram.com/p/DZsBsN8jFqC/?utm_source=ig_web_button_share_sheet",
     desc: "Trending reel 🔥",
   },
 
   {
     id: 4,
-    postId: "DTQaK0DDMXk",
-    link: "https://www.instagram.com/reel/DTQaK0DDMXk/",
+    image: post4,
+    link: "https://www.instagram.com/p/DYyse0TDIQB/?utm_source=ig_web_button_share_sheet",
     desc: "Latest reel 🎬",
   },
 
   {
     id: 5,
-    postId: "DIZL7XUSNJP",
-    link: "https://www.instagram.com/reel/DIZL7XUSNJP/",
+    image: post5,
+    link: "https://www.instagram.com/p/DU3iXwhDG7x/?utm_source=ig_web_button_share_sheet",
     desc: "Elegant style ✨",
   },
 
   {
     id: 6,
-    postId: "DVJSJm3jBel",
-    link: "https://www.instagram.com/p/DVJSJm3jBel/",
+    image: post6,
+    link: "https://www.instagram.com/p/DYV88pMjEdK/?utm_source=ig_web_button_share_sheet",
     desc: "Party wear 🎉",
   },
 
   {
     id: 7,
-    postId: "DXLqLwuDHd_",
-    link: "https://www.instagram.com/p/DXLqLwuDHd_/?utm_source=ig_web_button_share_sheet",
+    image: post7,
+    link: "https://www.instagram.com/p/DYj-sv-jMEj/?utm_source=ig_web_button_share_sheet",
     desc: "Stylish outfit 😍",
   },
 
   {
     id: 8,
-    postId: "DU3iXwhDG7x",
-    link: "https://www.instagram.com/p/DU3iXwhDG7x/",
+    image: post8,
+    link: "https://www.instagram.com/p/DY14NKejGgK/?utm_source=ig_web_button_share_sheet",
     desc: "Premium collection 👑",
   },
 
   {
     id: 9,
-    postId: "DQUaonCkt8b",
-    link: "https://www.instagram.com/reel/DQUaonCkt8b/",
+    image: post9,
+    link: "https://www.instagram.com/p/DY9lzRCE7Et/?utm_source=ig_web_button_share_sheet",
     desc: "New reel 🚀",
   },
 
   {
     id: 10,
-    postId: "DS-WYa2DPne",
-    link: "https://www.instagram.com/p/DS-WYa2DPne/",
+    image: post10,
+    link: "https://www.instagram.com/p/DYwc5BKjGJ5/?utm_source=ig_web_button_share_sheet",
     desc: "Festive look 🎊",
   },
 
   {
     id: 11,
-    postId: "DSwhhSJjLTj",
-    link: "https://www.instagram.com/p/DSwhhSJjLTj/",
+    image: post11,
+    link: "https://www.instagram.com/p/DZT-YktDI6V/?utm_source=ig_web_button_share_sheet",
     desc: "Casual wear 👕",
   },
 
   {
     id: 12,
-    postId: "DSwhFl8DDBE",
-    link: "https://www.instagram.com/p/DSwhFl8DDBE/",
+    image: post12,
+    link: "https://www.instagram.com/p/DZaECf1MoX1/?utm_source=ig_web_button_share_sheet",
     desc: "Daily fashion 💫",
   },
 
   {
     id: 13,
-    postId: "DSFpsYZDPHj",
-    link: "https://www.instagram.com/p/DSFpsYZDPHj/",
+    image: post13,
+    link: "https://www.instagram.com/p/DVJSJm3jBel/?utm_source=ig_web_button_share_sheet",
     desc: "Trendy outfit 💃",
   },
 
   {
     id: 14,
-    postId: "DXJaTcTkQtW",
-    link: "https://www.instagram.com/p/DXJaTcTkQtW/",
+    image: post14,
+    link: "https://www.instagram.com/p/DTcdm2KjPHt/?utm_source=ig_web_button_share_sheet",
     desc: "Latest drop 🆕",
   },
 ];
 
-const Img = ({ postId, link, desc }) => (
+const Img = ({ image, link, desc }) => (
   <div
     onClick={() => window.open(link, "_blank")}
     className="
@@ -116,7 +129,7 @@ const Img = ({ postId, link, desc }) => (
     "
   >
     <img
-      src={`https://images.weserv.nl/?url=https://www.instagram.com/p/${postId}/media/?size=l`}
+      src={image}
       alt="instagram"
       className="
         w-full

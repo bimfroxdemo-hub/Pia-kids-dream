@@ -1,19 +1,20 @@
 import { FaInstagram } from "react-icons/fa";
 import flower from "../assets/backimg3.png";
-import post1 from "../assets/instapostimg/post-1.JPEG";
-import post2 from "../assets/instapostimg/post-2.JPEG";
-import post3 from "../assets/instapostimg/post-3.JPEG";
-import post4 from "../assets/instapostimg/post-4.JPEG";
+import post1 from "../assets/instapostimg/post-1.jpeg";
+import post2 from "../assets/instapostimg/post-2.jpeg";
+import post3 from "../assets/instapostimg/post-3.jpeg";
+import post4 from "../assets/instapostimg/post-4.jpeg";
 import post5 from "../assets/instapostimg/post-5.JPG";
-import post6 from "../assets/instapostimg/post-6.JPEG";
-import post7 from "../assets/instapostimg/post-7.JPEG";
-import post8 from "../assets/instapostimg/post-8.JPEG";
-import post9 from "../assets/instapostimg/post-9.JPEG";
-import post10 from "../assets/instapostimg/post-10.JPEG";
-import post11 from "../assets/instapostimg/post-11.JPEG";
-import post12 from "../assets/instapostimg/post-12.JPEG";
-import post13 from "../assets/instapostimg/post-13.JPEG";
-import post14 from "../assets/instapostimg/post-14.JPEG";
+import post6 from "../assets/instapostimg/post-6.jpeg";
+import post7 from "../assets/instapostimg/post-7.jpeg";
+import post8 from "../assets/instapostimg/post-8.jpeg";
+import post9 from "../assets/instapostimg/post-9.jpeg";
+import post10 from "../assets/instapostimg/post-10.jpeg";
+import post11 from "../assets/instapostimg/post-11.jpeg";
+import post12 from "../assets/instapostimg/post-12.jpeg";
+import post13 from "../assets/instapostimg/post-13.jpeg";
+import post14 from "../assets/instapostimg/post-14.jpeg";
+
 const posts = [
   {
     id: 1,

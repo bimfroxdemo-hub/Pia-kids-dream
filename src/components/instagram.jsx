@@ -19,14 +19,14 @@ const posts = [
   {
     id: 1,
     image: post1,
-    link: "https://www.instagram.com/p/DZzy1lGDGvW/?utm_source=ig_web_button_share_sheet",
+    link: "https://www.instagram.com/p/DTLlEm8DDCp/?utm_source=ig_web_button_share_sheet",
     desc: "Kids fashion collection 👗",
   },
 
   {
     id: 2,
     image: post2,
-    link: "https://www.instagram.com/p/DaF7JysjDyH/?utm_source=ig_web_button_share_sheet",
+    link: "https://www.instagram.com/p/DXLqLwuDHd_/?utm_source=ig_web_button_share_sheet",
     desc: "New arrivals 💖",
   },
 

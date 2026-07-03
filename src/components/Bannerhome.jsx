@@ -6,7 +6,7 @@ import wedding from "../assets/weddingimg/5-frontimg.jpeg";
 import western from "../assets/westernimg/21-img1.jpeg";
 import navratri from "../assets/navratriimg/10-frontnavratri.jpeg";
 import birthday from "../assets/birthdayimg/14-frontimg.jpeg";
-import summer from "../assets/summerimg/summerfront3.jpg";
+import summer from "../assets/summerimg/summerfront3.JPG";
 
 
 const slides = [

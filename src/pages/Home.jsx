@@ -11,12 +11,13 @@ import { Link } from "react-router-dom";
 import outline from "../assets/outline.jpg";
 import outline1 from "../assets/outline1.jpg";
 
-import c1 from "../assets/celebratyimg/look1.jpg";
+import c1 from "../assets/celebratyimg/look1.JPG";
 import c2 from "../assets/celebratyimg/look2.jpeg";
-import c3 from "../assets/celebratyimg/look3.jpg";
+import c3 from "../assets/celebratyimg/look3.JPG";
 import c4 from "../assets/celebratyimg/look4.jpeg";
 import c5 from "../assets/celebratyimg/look5.jpeg";
 import c6 from "../assets/celebratyimg/look6.jpeg";
+
 import logo from "../assets/heroimg/logo.png";
 
 

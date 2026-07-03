@@ -208,7 +208,7 @@ function About() {
               <div className="p-6">
 
                 <h3 className="text-xl font-medium text-[#9836b9]">
-                  Best Kids Fashion Award
+                  Kids Fashion Award
                 </h3>
 
                 <p className="mt-3 text-gray-600 text-sm leading-6">
@@ -231,7 +231,7 @@ function About() {
               <div className="p-6">
 
                 <h3 className="text-xl font-medium text-[#9836b9]">
-                  Business Excellence Recognition
+                  Fashion Excellence Recognition
                 </h3>
 
                 <p className="mt-3 text-gray-600 text-sm leading-6">

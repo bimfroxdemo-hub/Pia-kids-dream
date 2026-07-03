@@ -1,196 +1,375 @@
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
+
 import Instagramsection from "../components/instagram";
-// TOPS
-import top1 from "../assets/SHOPIMG/TOPS/top1.jpg";
-import top2 from "../assets/SHOPIMG/TOPS/top2.jpg";
-import top3 from "../assets/SHOPIMG/TOPS/top3.jpg";
-import top4 from "../assets/SHOPIMG/TOPS/top4.jpg";
-import top5 from "../assets/SHOPIMG/TOPS/top5.jpg";
-import top6 from "../assets/SHOPIMG/TOPS/top6.jpg";
+import productsData from "../data/productsData";
+import { Helmet } from "react-helmet-async";
 
-// SHIRTS
-import shirts1 from "../assets/SHOPIMG/Shirts/shirts1.jpg";
-import shirts2 from "../assets/SHOPIMG/Shirts/shirts2.jpg";
-import shirts3 from "../assets/SHOPIMG/Shirts/shirts3.jpg";
-import shirts4 from "../assets/SHOPIMG/Shirts/shirts4.jpg";
-import shirts5 from "../assets/SHOPIMG/Shirts/shirts5.jpg";
-import shirts6 from "../assets/SHOPIMG/Shirts/shirts6.jpg";
+// ==========================
+// CATEGORY MAP
+// ==========================
+const categoryMap = {
+  Wedding: "Wedding",
+  Western: "Western",
+  Summer: "Summer",
 
-// SHORTS
-import shorts1 from "../assets/SHOPIMG/Shorts/Shorts1.jpg";
-import shorts2 from "../assets/SHOPIMG/Shorts/Shorts2.jpg";
-import shorts3 from "../assets/SHOPIMG/Shorts/Shorts3.jpg";
-import shorts4 from "../assets/SHOPIMG/Shorts/Shorts4.jpg";
-import shorts5 from "../assets/SHOPIMG/Shorts/Shorts5.jpg";
-import shorts6 from "../assets/SHOPIMG/Shorts/Shorts6.jpg";
+  Navratri: "Navratri Collection",
+  Birthday: "Birthday Collection",
 
-// SKIRTS
-import skirts2 from "../assets/SHOPIMG/Skirts/Skirts2.jpg";
-import skirts3 from "../assets/SHOPIMG/Skirts/Skirts3.jpg";
-import skirts4 from "../assets/SHOPIMG/Skirts/Skirts4.jpg";
-import skirts5 from "../assets/SHOPIMG/Skirts/Skirts5.jpg";
-import skirts6 from "../assets/SHOPIMG/Skirts/Skirts6.jpg";
-
-// PANTS
-import pants1 from "../assets/SHOPIMG/Pants/Pents1.jpg";
-import pants2 from "../assets/SHOPIMG/Pants/Pents2.jpg";
-import pants3 from "../assets/SHOPIMG/Pants/Pents3.jpg";
-import pants4 from "../assets/SHOPIMG/Pants/Pents4.jpg";
-import pants5 from "../assets/SHOPIMG/Pants/Pents5.jpg";
-import pants6 from "../assets/SHOPIMG/Pants/Pents6.jpg";
-
-// DRESSES
-import dress1 from "../assets/SHOPIMG/Dresses/Dresses1.jpg";
-import dress2 from "../assets/SHOPIMG/Dresses/Dresses2.jpg";
-import dress3 from "../assets/SHOPIMG/Dresses/Dresses3.jpg";
-import dress4 from "../assets/SHOPIMG/Dresses/Dresses4.jpg";
-import dress5 from "../assets/SHOPIMG/Dresses/Dresses5.jpg";
-import dress6 from "../assets/SHOPIMG/Dresses/Dresses6.jpg";
-
-// BLAZERS
-import blazer1 from "../assets/SHOPIMG/Blazers/Blazers1.jpg";
-import blazer2 from "../assets/SHOPIMG/Blazers/Blazers2.jpg";
-import blazer3 from "../assets/SHOPIMG/Blazers/Blazers3.jpg";
-import blazer4 from "../assets/SHOPIMG/Blazers/Blazers4.jpg";
-import blazer5 from "../assets/SHOPIMG/Blazers/Blazers5.jpg";
-import blazer6 from "../assets/SHOPIMG/Blazers/Blazers6.jpg";
-
-const productsData = {
-  Tops: [{ name: "Floral Top", price: "₹1200", images: [top1, top2, top3, top4, top5, top6], description: "Soft cotton top", sizes: ["S", "M", "L", "XL"] }],
-  Shirts: [{ name: "Formal Shirt", price: "₹1500", images: [shirts1, shirts2, shirts3, shirts4, shirts5, shirts6], description: "Office wear shirt", sizes: ["M", "L", "XL"] }],
-  Shorts: [{ name: "Denim Shorts", price: "₹900", images: [shorts1, shorts2, shorts3, shorts4, shorts5, shorts6], description: "Comfortable shorts", sizes: ["S", "M", "L"] }],
-  Skirts: [{ name: "Skirt", price: "₹900", images: [skirts2, skirts3, skirts4, skirts5, skirts6], description: "Comfortable Skirt", sizes: ["S", "M", "L"] }],
-  Pants: [{ name: "Pants", price: "₹900", images: [pants1, pants2, pants3, pants4, pants5, pants6], description: "Comfortable Pants", sizes: ["S", "M", "L"] }],
-  Dresses: [{ name: "Dress", price: "₹1200", images: [dress1, dress2, dress3, dress4, dress5, dress6], description: "Elegant dress", sizes: ["S", "M", "L"] }],
-  Blazers: [{ name: "Blazer", price: "₹1500", images: [blazer1, blazer2, blazer3, blazer4, blazer5, blazer6], description: "Elegant blazer", sizes: ["S", "M", "L"] }]
+  "Wedding Collection": "Wedding",
+  "Western Wear": "Western",
+  "Summer Collection": "Summer",
+  "Navratri Collection": "Navratri Collection",
+  "Birthday Collection": "Birthday Collection",
 };
-
 function Collections() {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
-  const category = query.get("category") || "Tops";
+
+  const category =
+    categoryMap[query.get("category")] || "Wedding";
 
   const products = productsData[category] || [];
 
+  // STATES
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedSize, setSelectedSize] = useState("");
 
-  useEffect(() => {
-    if (products.length > 0) {
-      setSelectedProduct(products[0]);
-      setSelectedImage(products[0].images[0]);
-      setSelectedSize("");
-    }
-  }, [category]);
-
-  // ✅ WHATSAPP FUNCTION
-  const handleWhatsApp = () => {
-    if (!selectedSize) {
-      alert("Please select size");
-      return;
-    }
-
-    const message = `Hello, I want to order:
-
-🛍 Product: ${selectedProduct.name}
-💰 Price: ${selectedProduct.price}
-📏 Size: ${selectedSize}
-🖼 Image: ${selectedImage}`;
-
-    window.open(
-      `https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(message)}`,
-      "_blank"
+  // ==========================
+  // NOT FOUND
+  // ==========================
+  if (!products.length) {
+    return (
+      <div className="pt-32 text-center text-red-500">
+        Product not found
+      </div>
     );
+  }
+
+  // ==========================
+  // OPEN PRODUCT
+  // ==========================
+  const openProduct = (item) => {
+    setSelectedProduct(item);
+    setSelectedImage(item.front);
+    setSelectedSize("");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
-  return (
-    <div className="pt-24 w-full px-6 md:px-16 py-12 bg-gray-50 min-h-screen">
+  // ==========================
+  // WHATSAPP ORDER
+  // ==========================
+ const handleWhatsApp = () => {
+  if (!selectedSize) return alert("Please select size");
 
-      {selectedProduct && (
-        <div className="grid md:grid-cols-2 gap-12 bg-white p-6 rounded-3xl shadow-sm">
+  const msg = `🛍️ NEW ORDER REQUEST
 
-          {/* LEFT */}
-          <div>
-            <img
-              src={selectedImage}
-              className="w-full h-[500px] object-cover rounded-2xl"
-            />
+👗 Product: ${selectedProduct.title}
+💰 Price: ${selectedProduct.price}
+📏 Size: ${selectedSize}
 
-            <div className="flex gap-3 mt-4 overflow-x-auto">
-              {selectedProduct.images.map((img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  onClick={() => setSelectedImage(img)}
-                  className={`h-20 w-20 object-cover rounded-xl cursor-pointer border ${
-                    selectedImage === img
-                      ? "border-black"
-                      : "border-gray-200"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
+📝 Details:
+${selectedProduct.details}
 
-          {/* RIGHT */}
-          <div className="flex flex-col justify-center">
+📦 Specs:
+${selectedProduct.specs?.map((s) => `- ${s}`).join("\n")}
 
-            <h2 className="text-3xl font-semibold">
-              {selectedProduct.name}
-            </h2>
+Please confirm availability 🙏`;
 
-            <p className="text-xl mt-2 font-medium">
-              {selectedProduct.price}
-            </p>
+  const whatsappNumber = "919054981808";
 
-            <p className="mt-5 text-gray-500">
-              {selectedProduct.description}
-            </p>
+  window.open(
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,
+    "_blank"
+  );
+};
 
-            {/* SIZE */}
-            <div className="mt-8">
-              <p className="text-sm mb-3">Select Size</p>
-              <div className="flex gap-3 flex-wrap">
-                {selectedProduct.sizes.map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`px-4 py-2 rounded-full border ${
-                      selectedSize === size
-                        ? "bg-black text-white"
-                        : "border-gray-300 hover:border-black"
-                    }`}
+  // ==========================
+  // DETAIL PAGE
+  // ==========================
+  if (selectedProduct) {
+    return (
+      <div className="min-h-screen bg-[#f8f5ff] pt-[150px] sm:pt-[135px]">
+        <Helmet>
+          <title>{category} Collection | Pia Kids Dream Premium Kidswear</title>
+          <meta
+            name="description"
+            content={`Explore premium ${category} collection by Pia Kids Dream. Stylish, comfortable and designer kidswear outfits.`}
+          />
+          <meta name="keywords" content="kidswear, fashion, boutique, designer kids clothes" />
+          <meta name="robots" content="index, follow" />
+          <meta property="og:title" content={`${category} Collection`} />
+          <meta property="og:description" content="Premium kidswear collection" />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content="/owner.jpg" />
+          <meta name="twitter:card" content="summary_large_image" />
+        </Helmet>
+        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-14 xl:px-20">
+
+          {/* BACK BUTTON */}
+          <button
+            onClick={() => {
+              setSelectedProduct(null);
+              setSelectedImage(null);
+              setSelectedSize("");
+            }}
+            className="flex items-center gap-2 mb-6 text-xs sm:text-sm uppercase tracking-[3px] text-[#5b2c83]"
+          >
+            <ArrowLeft size={15} />
+            Back To Collections
+          </button>
+
+          {/* PRODUCT BOX */}
+          <div className="bg-white border border-[#eadcf8] p-3 sm:p-5 lg:p-8 ">
+
+            <div className="grid grid-cols-1 lg:grid-cols-[90px_1fr_0.8fr] gap-5 lg:gap-8">
+
+              {/* THUMBNAILS */}
+              <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2">
+
+                {selectedProduct.images.map((img, i) => (
+                  <div
+                    key={i}
+                    onClick={() => setSelectedImage(img)}
+                    className={`
+            min-w-[60px]
+            sm:min-w-[70px]
+            cursor-pointer
+            border
+            transition-all
+            duration-300
+            ${selectedImage === img
+                        ? "border-[#6b21a8]"
+                        : "border-[#e5d7f5]"
+                      }
+          `}
                   >
-                    {size}
-                  </button>
+                    <img
+                      src={img}
+                      alt=""
+                      className="
+              w-full
+              h-[75px]
+              sm:h-[90px]
+              object-cover
+            "
+                    />
+                  </div>
                 ))}
               </div>
-            </div>
 
-            {/* BUTTONS */}
-            <div className="flex gap-4 mt-8">
-              <button
-                onClick={handleWhatsApp}
-                className="w-full bg-green-500 text-white py-3 rounded-xl hover:bg-green-600 transition"
-              >
-                Order on WhatsApp
-              </button>
-            </div>
+              {/* MAIN IMAGE */}
+              <div>
+                <img
+                  src={selectedImage}
+                  alt={selectedProduct.title}
+                  className="
+          w-full
+          h-[350px]
+          sm:h-[500px]
+          md:h-[650px]
+          lg:h-[700px]
+          object-cover
+          border
+          
+        "
+                />
+              </div>
 
-            {/* INFO */}
-            <div className="mt-8 text-sm text-gray-500 space-y-2">
-              <p>🚚 Free delivery above ₹999</p>
-              <p>🔁 Easy 7-day returns</p>
-              <p>✔ Premium quality guaranteed</p>
+              {/* DETAILS */}
+              <div className="mt-2 lg:mt-0">
+
+                <p className="uppercase text-[10px] sm:text-xs tracking-[4px] text-[#8d79a8]">
+                  New Collection
+                </p>
+
+                <h1 className="text-2xl md:text-3xl mt-3 font-light text-[#2d1b45] leading-tight">
+                  {selectedProduct.title}
+                </h1>
+
+                <p className="text-xl md:text-2xl mt-3 text-[#6b21a8] font-medium">
+                  {selectedProduct.price}
+                </p>
+
+                {/* DESCRIPTION */}
+                <p className="mt-5 text-sm md:text-base text-[#6f6480] leading-7">
+                  {selectedProduct.details}
+                </p>
+
+                {/* SPECS */}
+                {selectedProduct.specs && (
+                  <ul className="mt-5 text-sm text-[#6f6480] space-y-2">
+                    {selectedProduct.specs.map((s, i) => (
+                      <li key={i}>• {s}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* SIZE */}
+                <div className="mt-8">
+
+               <p className="uppercase text-xs sm:text-sm tracking-[3px] mb-4 text-[#5b2c83] font-medium">
+  Select Size
+</p>
+
+<div className="flex flex-wrap gap-3">
+  {selectedProduct.sizes.map((size) => (
+    <button
+      key={size}
+      onClick={() => setSelectedSize(size)}
+      className={`
+        min-w-[52px] h-12 px-4
+        rounded-lg
+        border
+        text-sm font-medium
+        transition-all duration-300
+        shadow-sm
+        ${
+          selectedSize === size
+            ? "bg-[#6b21a8] text-white border-[#6b21a8] shadow-md scale-105"
+            : "bg-white text-[#5b2c83] border-[#e5d4ff] hover:border-[#6b21a8] hover:bg-[#f8f3ff]"
+        }
+      `}
+    >
+      {size}
+    </button>
+  ))}
+</div>
+
+                </div>
+
+                {/* ORDER BUTTON */}
+                <button
+                  onClick={handleWhatsApp}
+                  className="
+          w-full
+          mt-8
+          bg-[#6b21a8]
+          hover:bg-[#581c87]
+          text-white
+          py-3
+          md:py-4
+          text-sm
+          md:text-base
+          uppercase
+          tracking-[2px]
+          transition-all
+          duration-300
+        "
+                >
+                  Order On WhatsApp
+                </button>
+
+              </div>
             </div>
 
           </div>
         </div>
-      )}
+      </div>
+    );
+  }
 
-      <Instagramsection />
+  // ==========================
+  // COLLECTION GRID
+  // ==========================
+  return (
+    <div className="min-h-screen bg-[#f8f5ff] pt-[150px] sm:pt-[135px]">
+      {/* SEO (GRID PAGE) */}
+      <Helmet>
+        <title>{category} Collection | Pia Kids Dream Premium Kidswear</title>
+        <meta
+          name="description"
+          content={`Explore premium ${category} collection by Pia Kids Dream.`}
+        />
+        <meta name="keywords" content="kidswear, fashion, boutique, designer clothes" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={`${category} Collection`} />
+        <meta property="og:description" content="Premium kidswear collection" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/owner.jpg" />
+      </Helmet>
+
+      {/* HEADER */}
+      <div className="text-center mb-14 px-4">
+        <p className="uppercase tracking-[6px] text-[#8d79a8] text-sm">
+          Luxury Fashion
+        </p>
+
+        <h1 className="text-3xl md:text-5xl mt-4 font-light text-[#2d1b45]">
+          {category} Collection
+        </h1>
+
+        <p className="text-sm md:text-base text-[#746985] mt-4 max-w-2xl mx-auto">
+          Explore premium styles with modern fashion aesthetics.
+        </p>
+      </div>
+
+      {/* PRODUCTS GRID */}
+      <div className="px-4 sm:px-6 lg:px-14">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          {products.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => openProduct(item)}
+              className="cursor-pointer group"
+            >
+
+              <div className="overflow-hidden border bg-white">
+                <img
+                  src={item.front}
+                  alt={item.title}
+                  className="
+    w-full
+    h-[240px]
+    sm:h-[320px]
+    md:h-[420px]
+    lg:h-[500px]
+    object-cover
+    group-hover:scale-105
+    transition
+    duration-500
+  "
+                />
+              </div>
+
+   <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+  
+  <div className="flex-1">
+    <h3 className="text-sm md:text-lg font-medium text-[#2d1b45]">
+      {item.title}
+    </h3>
+
+    <p className="inline-block bg-purple-500 text-white px-4 py-2 text-xs font-medium mt-2">
+      {item.price}
+    </p>
+  </div>
+
+  <button
+    onClick={() => handleWhatsApp(item)}
+    className="w-full sm:w-auto border border-purple-500 text-purple-500 px-4 py-2  text-xs hover:bg-purple-500 hover:text-white transition"
+  >
+    WhatsApp
+  </button>
+
+</div>
+
+            </div>
+          ))}
+
+        </div>
+      </div>
+
+      {/* INSTAGRAM */}
+      <div className="mt-20">
+        <Instagramsection />
+      </div>
+
     </div>
   );
 }

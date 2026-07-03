@@ -1,142 +1,431 @@
-import img1 from "../assets/owner.jpg";
-import img2 from "../assets/instagram/post1.jpg";
-import img3 from "../assets/instagram/post2.jpg";
-import InstagramSection from "../components/instagram";
+import { motion } from "framer-motion";
+import achievement1 from "../assets/aboutimg/achievement1.jpeg"
+import achievement2 from "../assets/aboutimg/achievement2.jpeg"
+import achievement3 from "../assets/aboutimg/achievement3.jpeg"
+import owenerimg from "../assets/aboutimg/owenerimg.jpeg"
 
-function OurStory() {
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import { Sparkles, Heart, Scissors } from "lucide-react";
+/* ================= ANIMATION ================= */
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+function About() {
   return (
-    <div className="font-body bg-[#fdecec] overflow-hidden">
+    <div className="bg-[#faf7f5] text-[#111111] overflow-hidden">
+      <Helmet>
+        <title>Pia Kids Dream | Premium Kidswear Brand by Priya Mahapatra</title>
 
-      {/* ================= HERO ================= */}
-      <section className="relative py-24 px-6 bg-[#fdecec] overflow-hidden">
-        {/* Background Shapes */}
-        <div className="absolute -top-16 -left-16 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse"></div>
-        <div className="absolute -bottom-24 -right-16 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-2xl opacity-40"></div>
-        <div className="absolute top-1/4 right-1/3 w-56 h-56 bg-gradient-to-tr from-pink-400 to-pink-100 rounded-full filter blur-xl opacity-30"></div>
+        <meta
+          name="description"
+          content="Pia Kids Dream is a premium kidswear brand founded by Priya Mahapatra, offering stylish, comfortable and high-quality outfits for children. Custom designs, soft fabrics and special occasion wear for kids."
+        />
 
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-12 relative z-10">
+        <meta
+          name="keywords"
+          content="kidswear brand India, Pia Kids Dream, Priya Mahapatra brand, premium kids clothing, children fashion dresses, baby clothes, custom kids outfits, stylish kids wear, birthday dress for kids"
+        />
 
-          {/* LEFT TEXT */}
-          <div className="space-y-6">
-            <p className="text-pink-500 font-medium tracking-wide animate-fadeIn">OUR JOURNEY</p>
-            <h1 className="text-5xl md:text-6xl font-heading text-pink-700 leading-tight animate-fadeIn delay-100">
-              Crafting Style <br /> With Passion
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph (WhatsApp / Instagram sharing) */}
+        <meta property="og:title" content="Pia Kids Dream | Premium Kidswear Brand" />
+
+        <meta
+          property="og:description"
+          content="Discover Pia Kids Dream by Priya Mahapatra - premium, stylish and comfortable kidswear designed with love for every child."
+        />
+
+        <meta property="og:type" content="website" />
+
+        {/* IMPORTANT: full URL use karna (replace with your domain) */}
+        <meta property="og:image" content="https://yourdomain.com/owner.jpg" />
+
+        {/* Twitter SEO */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Pia Kids Dream | Kidswear Brand" />
+        <meta
+          name="twitter:description"
+          content="Premium kidswear brand by Priya Mahapatra offering stylish and comfortable outfits for children."
+        />
+        <meta name="twitter:image" content="https://yourdomain.com/owner.jpg" />
+      </Helmet>
+      {/* ================================================= */}
+      {/* HERO */}
+      {/* ================================================= */}
+
+      <section className="relative flex items-center px-6 md:px-10 pt-28 md:pt-32 pb-32 overflow-hidden bg-purple-100">
+
+        {/* BACKGROUND BLOBS */}
+        <div className="absolute top-0 left-0 w-[320px] md:w-[450px] h-[320px] md:h-[450px] bg-purple-100 blur-[140px] opacity-50"></div>
+
+        <div className="absolute bottom-0 right-0 w-[280px] md:w-[380px] h-[280px] md:h-[380px] bg-pink-100 blur-[130px] opacity-40"></div>
+
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-14 lg:gap-20 items-center relative z-10">
+
+          {/* LEFT CONTENT */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="space-y-7"
+          >
+
+            <p className="text-xs tracking-[5px] text-purple-600 uppercase font-medium flex items-center gap-2">
+              <Sparkles size={16} />
+              Pia Kids Dream
+            </p>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.2] text-gray-900">
+              Dressing Childhood with
+              <span className="block text-purple-600 mt-2">
+                Comfort, Style & Love
+              </span>
             </h1>
-            <p className="text-gray-600 font-body animate-fadeIn delay-200">
-              Akshar Collection started with a vision to redefine everyday fashion by combining elegance, comfort, and affordability.
+
+            <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-xl flex gap-2">
+              <Heart size={18} className="text-pink-500 mt-1 flex-shrink-0" />
+              Pia Kids Dream is a premium kidswear brand designed to make every child
+              feel confident, comfortable and special.
             </p>
-            <p className="text-gray-600 font-body animate-fadeIn delay-300">
-              From a small idea to a growing fashion brand, our journey is driven by creativity, trust, and a love for modern trends.
+
+            <p className="text-gray-500 text-sm md:text-base leading-relaxed max-w-xl flex gap-2">
+              <Scissors size={18} className="text-purple-500 mt-1 flex-shrink-0" />
+              From birthday outfits to daily wear, every piece is made with soft
+              fabrics, fine stitching and thoughtful design.
             </p>
-            <div className="grid grid-cols-2 gap-4 text-gray-700 animate-fadeIn delay-400">
-              <p>✨ Premium Quality</p>
-              <p>✨ Latest Trends</p>
-              <p>✨ Affordable Fashion</p>
-              <p>✨ Trusted Brand</p>
-            </div>
-            <div className="flex gap-4 animate-fadeIn delay-500">
-              <button className="px-6 py-3 bg-pink-600 text-white rounded-full shadow-md hover:bg-pink-700 transition">
-                Explore Collection
-              </button>
-              <button className="px-6 py-3 border border-pink-500 text-pink-600 rounded-full hover:bg-pink-100 transition">
-                Learn More
-              </button>
-            </div>
-          </div>
+
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-xl flex gap-2">
+              <Sparkles size={18} className="text-yellow-500 mt-1 flex-shrink-0" />
+              Founded by
+              <span className="text-purple-600 font-medium ml-1">
+                Priya Mahapatra
+              </span>
+              , focused on comfort, quality and love.
+            </p>
+
+          
+
+          </motion.div>
 
           {/* RIGHT IMAGE */}
-          <div className="relative flex justify-center items-center">
-            {/* Floating Sparkles */}
-            <div className="absolute -top-12 -left-10 w-16 h-16 bg-white rounded-full opacity-30 animate-bounceSlow"></div>
-            <div className="absolute -bottom-10 -right-12 w-12 h-12 bg-white rounded-full opacity-20 animate-bounceSlow delay-200"></div>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="relative"
+          >
 
-            {/* Main Owner Image */}
-            <img
-              src={img1}
-              className="w-[320px] h-[320px] md:w-[360px] md:h-[360px] object-cover rounded-3xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] z-10 transform transition-transform duration-500 hover:scale-105 hover:-rotate-3"
-            />
+            <div className="relative overflow-hidden shadow-lg">
 
-            {/* Background Glow */}
-            <div className="absolute w-[400px] h-[400px] bg-gradient-to-r from-pink-300 via-pink-200 to-pink-100 rounded-full blur-3xl opacity-50 -z-10"></div>
-          </div>
-        </div>
-      </section>
+              <img
+                src={owenerimg}
+                alt="Pia Kids Dream premium kidswear collection"
+                className="w-full h-[480px] sm:h-[560px] md:h-[650px] object-cover hover:scale-105 transition duration-700"
+              />
 
-      {/* ================= MISSION & VISION ================= */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-heading text-pink-700 mb-6">Our Mission & Vision</h2>
-          <p className="text-gray-700 font-body mb-4">
-            Our mission is to make stylish fashion accessible for everyone. We envision a world where clothing expresses individuality, creativity, and confidence.
-          </p>
-          <p className="text-gray-700 font-body">
-            We constantly innovate to blend comfort, affordability, and elegance in every collection.
-          </p>
-        </div>
-      </section>
+              {/* INFO STRIP */}
+              <div className="absolute bottom-5 left-5 right-5 bg-white/90 backdrop-blur-md p-5 border border-gray-200">
 
-   {/* ================= TEAM ================= */}
-<section className="py-24 px-6 bg-[#fdecec] relative overflow-hidden">
-  <div className="max-w-7xl mx-auto text-center mb-16">
-    <h2 className="text-5xl font-heading text-pink-700 font-bold">Meet Our Team</h2>
-    <p className="text-gray-600 font-body mt-2 text-lg">The people behind our success</p>
-  </div>
+                <p className="text-xs uppercase tracking-[2px] text-gray-500">
+                  Founder & Designer
+                </p>
 
-  <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center items-start gap-12">
+                <h3 className="text-2xl font-bold text-gray-900">
+                  Priya Mahapatra
+                </h3>
+              </div>
 
-    {/* TEAM MEMBER LEFT */}
-    <div className="flex flex-col items-center gap-4">
-      <img src={img1} className="w-64 h-64 md:w-80 md:h-80 rounded-3xl object-cover shadow-2xl border-4 border-pink-200 transform -rotate-6 transition-transform hover:scale-105" />
-      <h3 className="text-2xl font-heading font-bold text-pink-700 mt-2">Alice</h3>
-      <p className="text-gray-700 font-body text-lg">Lead Designer</p>
-    </div>
-
-    {/* TEAM MEMBER CENTER */}
-    <div className="flex flex-col items-center gap-4 -translate-y-6 md:-translate-y-0">
-      <img src={img2} className="w-64 h-64 md:w-80 md:h-80 rounded-3xl object-cover shadow-2xl border-4 border-pink-200 transform rotate-3 transition-transform hover:scale-105" />
-      <h3 className="text-2xl font-heading font-bold text-pink-700 mt-2">Rahul</h3>
-      <p className="text-gray-700 font-body text-lg">Marketing Head</p>
-    </div>
-
-    {/* TEAM MEMBER RIGHT */}
-    <div className="flex flex-col items-center gap-4">
-      <img src={img3} className="w-64 h-64 md:w-80 md:h-80 rounded-3xl object-cover shadow-2xl border-4 border-pink-200 transform -rotate-3 transition-transform hover:scale-105" />
-      <h3 className="text-2xl font-heading font-bold text-pink-700 mt-2">Priya</h3>
-      <p className="text-gray-700 font-body text-lg">Product Manager</p>
-    </div>
-
-  </div>
-
-  {/* BACKGROUND DECOR */}
-  <div className="absolute top-0 left-0 w-64 h-64 bg-pink-200 rounded-full opacity-20 blur-3xl"></div>
-  <div className="absolute bottom-0 right-0 w-64 h-64 bg-pink-200 rounded-full opacity-20 blur-3xl"></div>
-</section>
-
-
-      {/* ================= TESTIMONIALS ================= */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-7xl mx-auto text-center mb-12">
-          <h2 className="text-4xl font-heading text-pink-700">What Our Customers Say</h2>
-          <p className="text-gray-600 font-body mt-2">Real feedback from our happy clients</p>
-        </div>
-        <div className="max-w-6xl mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { name: "Alice", review: "Amazing quality and fast delivery!" },
-            { name: "Rahul", review: "Stylish outfits, very affordable." },
-            { name: "Priya", review: "Love the modern collection and colors." }
-          ].map((cust, idx) => (
-            <div key={idx} className="bg-pink-50 rounded-2xl p-6 shadow-lg flex flex-col items-center text-center">
-              <h3 className="font-bold font-heading text-pink-700 mb-2">{cust.name}</h3>
-              <p className="text-gray-700 font-body">{cust.review}</p>
             </div>
-          ))}
+
+          </motion.div>
+
         </div>
+
+        {/* WAVE BOTTOM */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+
+          <svg
+            viewBox="0 0 1440 200"
+            className="w-full h-[80px] md:h-[140px]"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#faf8ff"
+              d="M0,96L60,112C120,128,240,160,360,160C480,160,600,128,720,117.3C840,107,960,117,1080,128C1200,139,1320,149,1380,154.7L1440,160L1440,200L1380,200C1320,200,1200,200,1080,200C960,200,840,200,720,200C600,200,480,200,360,200C240,200,120,200,60,200L0,200Z"
+            />
+          </svg>
+
+        </div>
+
       </section>
-{/* ================= INSTAGRAM GALLERY ================= */}
-      <InstagramSection />
+
+      {/*achivement*/}
+      <section className="py-24 bg-[#faf8ff]">
+
+        <div className="max-w-7xl mx-auto px-6">
+
+          <div className="text-center mb-16">
+
+            <p className="uppercase tracking-[6px] text-[#9836b9] text-xs">
+              Achievements
+            </p>
+
+            <h2 className="text-4xl md:text-5xl font-light mt-4">
+              Awards & Recognition
+            </h2>
+
+            <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
+              Recognition and milestones that reflect our dedication to quality and creativity.
+            </p>
+
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+
+            {/* Award 1 */}
+            <div className="bg-white shadow-sm overflow-hidden">
+
+              <img
+                src={achievement2}
+                alt="Award 1"
+                className="w-full h-[320px] object-cover"
+              />
+
+              <div className="p-6">
+
+                <h3 className="text-xl font-medium text-[#9836b9]">
+                  Best Kids Fashion Award
+                </h3>
+
+                <p className="mt-3 text-gray-600 text-sm leading-6">
+                  Recognized for excellence in children's fashion and innovative designs.
+                </p>
+
+              </div>
+
+            </div>
+
+            {/* Award 2 */}
+            <div className="bg-white shadow-sm overflow-hidden">
+
+              <img
+                src={achievement1}
+                alt="Award 2"
+                className="w-full h-[320px] object-cover"
+              />
+
+              <div className="p-6">
+
+                <h3 className="text-xl font-medium text-[#9836b9]">
+                  Business Excellence Recognition
+                </h3>
+
+                <p className="mt-3 text-gray-600 text-sm leading-6">
+                  Honored for outstanding contribution and customer satisfaction.
+                </p>
+
+              </div>
+
+            </div>
+
+            {/* Award 3 */}
+            <div className="bg-white shadow-sm overflow-hidden">
+
+              <img
+                src={achievement3}
+                alt="Award 3"
+                className="w-full h-[320px] object-cover"
+              />
+
+              <div className="p-6">
+
+                <h3 className="text-xl font-medium text-[#9836b9]">
+                  Fashion Industry Appreciation
+                </h3>
+
+                <p className="mt-3 text-gray-600 text-sm leading-6">
+                  Appreciated for creativity, quality craftsmanship and unique collections.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
       
+      {/* ================================================= */}
+      {/* ABOUT BLOCK */}
+      {/* ================================================= */}
+
+      <section className="relative py-20  md:py-32 bg-gradient-to-b from-[#fffafd] to-white overflow-hidden">
+
+        {/* FLOWER DECOR */}
+        <div className="absolute top-10 left-10 text-6xl opacity-10">
+          🌸
+        </div>
+
+        <div className="absolute bottom-20 right-10 text-7xl opacity-10 rotate-12">
+          🌷
+        </div>
+
+        <div className="absolute top-1/2 left-[5%] text-5xl opacity-10">
+          🌼
+        </div>
+
+        <div className="absolute top-32 right-[15%] text-4xl opacity-10">
+          ✿
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
+
+          {/* HEADING */}
+          <div className="text-center mb-10">
+
+            <p className="text-purple-500 tracking-[5px] text-xs uppercase">
+              Piakids Dream
+            </p>
+
+            <h2 className="mt-4 text-4xl md:text-5xl font-light text-gray-900">
+              Growing Beautiful Dreams
+            </h2>
+
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-10">
+
+            {/* VISION */}
+            <div className="group bg-white p-10 border border-purple-100 shadow-lg hover:-translate-y-2 transition duration-500">
+
+              <div className="flex items-center gap-4 mb-6">
+
+                <div className="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center text-3xl">
+                  🌸
+                </div>
+
+                <div>
+                  <p className="text-purple-500 text-xs tracking-[4px] uppercase">
+                    Vision
+                  </p>
+
+                  <h3 className="text-2xl font-semibold">
+                    Timeless Kids Fashion
+                  </h3>
+                </div>
+
+              </div>
+
+              <p className="text-gray-600 leading-8">
+                Our vision is to become a trusted kidswear brand
+                that blends comfort, quality and elegance into
+                every outfit, making childhood more beautiful.
+              </p>
+
+            </div>
+
+            {/* MISSION */}
+            <div className="group bg-gradient-to-br from-purple-600 to-fuchsia-600  p-10 text-white shadow-xl hover:-translate-y-2 transition duration-500">
+
+              <div className="flex items-center gap-4 mb-6">
+
+                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-3xl">
+                  🌷
+                </div>
+
+                <div>
+                  <p className="text-purple-100 text-xs tracking-[4px] uppercase">
+                    Mission
+                  </p>
+
+                  <h3 className="text-2xl font-semibold">
+                    Comfort With Style
+                  </h3>
+                </div>
+
+              </div>
+
+              <p className="text-purple-100 leading-8">
+                Our mission is to design premium outfits that
+                allow children to move freely, feel confident,
+                and enjoy every moment in comfort and style.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* ================================================= */}
+      {/* QUOTE SECTION */}
+      {/* ================================================= */}
+      <section className="relative py-20 md:py-28 px-6 md:px-10 bg-purple-100 text-black overflow-hidden">
+
+        {/* TOP CURVE */}
+        <div className="absolute top-0 left-0 w-full -translate-y-[98%]">
+
+          <svg
+            viewBox="0 0 1440 220"
+            className="w-full h-[90px] md:h-[150px]"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#e9d5ff"
+              d="M0,220 C300,40 1140,40 1440,220 L1440,220 L0,220 Z"
+            />
+          </svg>
+
+        </div>
+
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto text-center"
+        >
+
+          <p className="text-purple-600 tracking-[5px] uppercase text-xs md:text-sm">
+            Pia Kids Dream
+          </p>
+
+          <h2 className="mt-8 text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight tracking-[-2px]">
+            Dressing Your Little
+            <span className="block text-purple-500">
+              Favourites
+            </span>
+          </h2>
+
+          <p className="mt-8 text-gray-700 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            Custom, comfortable & crafted with love
+            for your little star ✨
+          </p>
+
+        </motion.div>
+
+      </section>
     </div>
   );
 }
 
-export default OurStory;
+export default About;

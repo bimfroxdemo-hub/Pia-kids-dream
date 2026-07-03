@@ -1,124 +1,330 @@
-import { useState } from "react";
+import { FaInstagram } from "react-icons/fa";
+import flower from "../assets/backimg3.png";
 
-import post1 from "../assets/instagram/post1.jpg";
-import post2 from "../assets/instagram/post2.jpg";
-import post3 from "../assets/instagram/post3.jpg";
-import post4 from "../assets/instagram/post4.jpg";
-import post5 from "../assets/instagram/post5.jpg";
-import post6 from "../assets/instagram/post6.jpg";
-import post8 from "../assets/instagram/post8.jpg";
-import post9 from "../assets/instagram/post9.jpg";
+const posts = [
+  {
+    id: 1,
+    postId: "DOwI13AjCro",
+    link: "https://www.instagram.com/reel/DOwI13AjCro/",
+    desc: "Kids fashion collection 👗",
+  },
 
-function InstagramSection() {
-  const [instaModal, setInstaModal] = useState(null);
+  {
+    id: 2,
+    postId: "DYV88pMjEdK",
+    link: "https://www.instagram.com/p/DYV88pMjEdK/?utm_source=ig_web_button_share_sheet",
+    desc: "New arrivals 💖",
+  },
 
-  const instaGallery = [
-    { id: 1, img: post1, user: "@fashionista", link: "https://instagram.com" },
-    { id: 2, img: post2, user: "@trendy", link: "https://instagram.com" },
-    { id: 3, img: post3, user: "@stylehub", link: "https://instagram.com" },
-    { id: 4, img: post4, user: "@ootd", link: "https://instagram.com" },
-    { id: 5, img: post5, user: "@fashiongram", link: "https://instagram.com" },
-    { id: 6, img: post6, user: "@streetstyle", link: "https://instagram.com" },
-    { id: 8, img: post8, user: "@vogue", link: "https://instagram.com" },
-    { id: 9, img: post9, user: "@fashionblogger", link: "https://instagram.com" },
-  ];
+  {
+    id: 3,
+    postId: "DXpbxNJDPlC",
+    link: "https://www.instagram.com/reel/DXpbxNJDPlC/",
+    desc: "Trending reel 🔥",
+  },
 
-  return (
-    <div>
-      {/* ================= INSTAGRAM SECTION ================= */}
-      <section className="py-20 px-6 bg-white">
+  {
+    id: 4,
+    postId: "DTQaK0DDMXk",
+    link: "https://www.instagram.com/reel/DTQaK0DDMXk/",
+    desc: "Latest reel 🎬",
+  },
 
-        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-4">
-          Discover on Instagram
-        </h2>
+  {
+    id: 5,
+    postId: "DIZL7XUSNJP",
+    link: "https://www.instagram.com/reel/DIZL7XUSNJP/",
+    desc: "Elegant style ✨",
+  },
 
-        <p className="text-center text-gray-500 mb-12">
-          @Aksharcollection
-        </p>
+  {
+    id: 6,
+    postId: "DVJSJm3jBel",
+    link: "https://www.instagram.com/p/DVJSJm3jBel/",
+    desc: "Party wear 🎉",
+  },
 
-        {/* GRID */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+  {
+    id: 7,
+    postId: "DXLqLwuDHd_",
+    link: "https://www.instagram.com/p/DXLqLwuDHd_/?utm_source=ig_web_button_share_sheet",
+    desc: "Stylish outfit 😍",
+  },
 
-          {instaGallery.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => setInstaModal(item)}
-              className="relative overflow-hidden group cursor-pointer"
-            >
+  {
+    id: 8,
+    postId: "DU3iXwhDG7x",
+    link: "https://www.instagram.com/p/DU3iXwhDG7x/",
+    desc: "Premium collection 👑",
+  },
 
-              {/* IMAGE */}
-              <img
-                src={item.img}
-                alt={item.user}
-                className="w-full h-[400px] md:h-[550px] object-cover transition duration-500 group-hover:scale-105"
-              />
+  {
+    id: 9,
+    postId: "DQUaonCkt8b",
+    link: "https://www.instagram.com/reel/DQUaonCkt8b/",
+    desc: "New reel 🚀",
+  },
 
-              {/* HOVER EFFECT */}
-              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition"></div>
+  {
+    id: 10,
+    postId: "DS-WYa2DPne",
+    link: "https://www.instagram.com/p/DS-WYa2DPne/",
+    desc: "Festive look 🎊",
+  },
 
-              {/* USERNAME */}
-              <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition">
-                {item.user}
-              </div>
+  {
+    id: 11,
+    postId: "DSwhhSJjLTj",
+    link: "https://www.instagram.com/p/DSwhhSJjLTj/",
+    desc: "Casual wear 👕",
+  },
 
-            </div>
-          ))}
+  {
+    id: 12,
+    postId: "DSwhFl8DDBE",
+    link: "https://www.instagram.com/p/DSwhFl8DDBE/",
+    desc: "Daily fashion 💫",
+  },
 
-        </div>
+  {
+    id: 13,
+    postId: "DSFpsYZDPHj",
+    link: "https://www.instagram.com/p/DSFpsYZDPHj/",
+    desc: "Trendy outfit 💃",
+  },
 
-      </section>
+  {
+    id: 14,
+    postId: "DXJaTcTkQtW",
+    link: "https://www.instagram.com/p/DXJaTcTkQtW/",
+    desc: "Latest drop 🆕",
+  },
+];
 
-      {/* ================= INSTAGRAM MODAL ================= */}
-      {instaModal && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-white/90 backdrop-blur-lg rounded-3xl w-full max-w-5xl flex flex-col md:flex-row overflow-hidden shadow-2xl animate-fadeIn relative">
+const Img = ({ postId, link, desc }) => (
+  <div
+    onClick={() => window.open(link, "_blank")}
+    className="
+      relative
+      group
+      cursor-pointer
+      overflow-hidden
+      rounded-2xl
+      bg-black
+      w-full
+      h-full
+    "
+  >
+    <img
+      src={`https://images.weserv.nl/?url=https://www.instagram.com/p/${postId}/media/?size=l`}
+      alt="instagram"
+      className="
+        w-full
+        h-full
+        object-cover
+        transition-all
+        duration-700
+        group-hover:scale-110
+      "
+    />
 
-            {/* Close Button */}
-            <button
-              onClick={() => setInstaModal(null)}
-              className="absolute top-4 right-4 text-gray-600 hover:text-black text-xl"
-            >
-              ✕
-            </button>
+    {/* OVERLAY */}
+    <div
+      className="
+        absolute inset-0
+       
+        transition-all
+        duration-500
+        flex
+        flex-col
+        items-center
+        justify-center
+        text-center
+        px-3 sm:px-5
+      "
+    >
+      <FaInstagram
+        className="
+          text-2xl sm:text-4xl
+          mb-2
+          opacity-0
+          translate-y-3
+          group-hover:opacity-100
+          group-hover:translate-y-0
+          transition-all
+          duration-500
+        "
+        style={{
+          background:
+            "radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
+      />
 
-            {/* Image */}
-            <img
-              src={instaModal.img}
-              alt={instaModal.user}
-              className="md:w-1/2 h-80 md:h-auto object-cover"
-            />
+      <p
+        className="
+          text-[10px] sm:text-xs
+          text-gray-300
+          opacity-0
+          group-hover:opacity-100
+          transition-all
+          duration-500
+        "
+      >
+        March 20, 2026
+      </p>
 
-            {/* Content */}
-            <div className="p-8 md:w-1/2 flex flex-col justify-center">
-
-              <h3 className="text-3xl font-bold mb-3">
-                {instaModal.user}
-              </h3>
-
-              <p className="text-gray-600 mb-6">
-                Discover this stunning fashion look ✨ and stay updated with the latest trends.
-              </p>
-
-              {/* Stats */}
-              <div className="flex gap-6 mb-6 text-gray-700">
-                <span>❤️1,245 Likes</span>
-                <span>💬120 Comments</span>
-              </div>
-
-              <a
-                href={instaModal.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-full text-center hover:scale-105 transition"
-              >
-                View on Instagram
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+      <p
+        className="
+          text-white
+          text-[11px] sm:text-sm
+          mt-2
+          leading-relaxed
+          opacity-0
+          translate-y-2
+          group-hover:opacity-100
+          group-hover:translate-y-0
+          transition-all
+          duration-500
+          line-clamp-3
+        "
+      >
+        {desc}
+      </p>
     </div>
+  </div>
+);
+
+export default function InstagramSection() {
+  return (
+    <section className="relative py-14 sm:py-20 bg-white overflow-hidden">
+
+      {/* HEADER */}
+<div className="text-center mb-10 relative z-10">
+
+  <p className="uppercase tracking-[5px] text-[10px] text-purple-500 mb-2">
+    Social Gallery
+  </p>
+
+  <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900">
+    Discover on
+    <span className="text-purple-500 italic font-light ml-2">
+      Instagram
+    </span>
+  </h2>
+
+</div>
+
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 relative">
+
+        {/* LEFT FLOWER */}
+        <img
+          src={flower}
+          alt=""
+          className="
+            hidden lg:block
+            absolute
+            -left-32 xl:-left-52
+            top-10
+            w-[220px] xl:w-[380px]
+            opacity-40
+            pointer-events-none
+            z-0
+            
+          "
+        />
+
+        {/* RIGHT FLOWER */}
+        <img
+          src={flower}
+          alt=""
+          className="
+            hidden lg:block
+            absolute
+            -right-32 xl:-right-52
+            bottom-0
+            w-[220px] xl:w-[380px]
+            opacity-40
+            rotate-180
+            pointer-events-none
+            z-0
+          
+          "
+        />
+
+        {/* MOBILE GRID */}
+        <div
+          className="
+            grid
+            grid-cols-2
+            sm:grid-cols-3
+            lg:grid-cols-4
+            gap-2 sm:gap-4
+            relative
+            z-10
+          "
+        >
+
+          {/* BIG CARD */}
+          <div className="col-span-2 row-span-2 h-[260px] sm:h-[420px] lg:h-[780px]">
+            <Img {...posts[0]} />
+          </div>
+
+          {/* NORMAL */}
+          <div className="h-[125px] sm:h-[200px] lg:h-[380px]">
+            <Img {...posts[1]} />
+          </div>
+
+          <div className="h-[125px] sm:h-[200px] lg:h-[380px]">
+            <Img {...posts[2]} />
+          </div>
+
+          <div className="h-[125px] sm:h-[200px] lg:h-[380px]">
+            <Img {...posts[3]} />
+          </div>
+
+          <div className="h-[125px] sm:h-[200px] lg:h-[380px]">
+            <Img {...posts[13]} />
+          </div>
+
+          <div className="h-[125px] sm:h-[200px] lg:h-[380px]">
+            <Img {...posts[6]} />
+          </div>
+
+          <div className="h-[125px] sm:h-[200px] lg:h-[380px]">
+            <Img {...posts[5]} />
+          </div>
+
+          {/* BIG CARD */}
+          <div className="col-span-2 row-span-2 h-[260px] sm:h-[420px] lg:h-[780px]">
+            <Img {...posts[4]} />
+          </div>
+
+          {/* TALL CARD */}
+          <div className="row-span-2 h-[260px] sm:h-[420px] lg:h-[780px]">
+            <Img {...posts[8]} />
+          </div>
+
+          {/* SMALL */}
+          <div className="h-[125px] sm:h-[200px] lg:h-[380px]">
+            <Img {...posts[9]} />
+          </div>
+
+          <div className="h-[125px] sm:h-[200px] lg:h-[380px]">
+            <Img {...posts[10]} />
+          </div>
+
+          <div className="h-[125px] sm:h-[200px] lg:h-[380px]">
+            <Img {...posts[11]} />
+          </div>
+
+          <div className="h-[125px] sm:h-[200px] lg:h-[380px]">
+            <Img {...posts[12]} />
+          </div>
+
+        </div>
+      </div>
+    </section>
   );
 }
-
-export default InstagramSection;

@@ -1,233 +1,214 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
-// 🔥 IMAGES (same as yours)
-import dress1 from "../assets/women/Dresses1.jpg";
-import dress2 from "../assets/women/Dresses2.jpg";
-import dress3 from "../assets/women/Dresses3.jpg";
-import dress4 from "../assets/women/Dresses4.jpg";
-import dress5 from "../assets/women/Dresses5.jpg";
-import dress6 from "../assets/women/Dresses6.jpg";
-
-import top1 from "../assets/women/top1.jpg";
-import top2 from "../assets/women/top2.jpg";
-import top3 from "../assets/women/top3.jpg";
-import top4 from "../assets/women/top4.jpg";
-import top5 from "../assets/women/top5.jpg";
-import top6 from "../assets/women/top6.jpg"; 
-
-import saree1 from "../assets/women/saree1.jpg";
-import saree2 from "../assets/women/saree2.jpg";
-import saree3 from "../assets/women/saree3.jpg";
-import saree4 from "../assets/women/saree4.jpg";
-import saree5 from "../assets/women/saree5.jpg";
-import saree6 from "../assets/women/saree6.jpg";
-
-import pents1 from "../assets/women/pents1.jpg";
-import pents2 from "../assets/women/pents2.jpg";
-import pents3 from "../assets/women/pents3.jpg";
-import pents4 from "../assets/women/pents4.jpg";
-import pents5 from "../assets/women/pents5.jpg";
-import pents6 from "../assets/women/pents6.jpg";  
-
-import Blazers1 from "../assets/women/Blazers1.jpg";
-import Blazers2 from "../assets/women/Blazers2.jpg";
-import Blazers3 from "../assets/women/Blazers3.jpg";
-import Blazers4 from "../assets/women/Blazers4.jpg";
-import Blazers5 from "../assets/women/Blazers5.jpg";
-import Blazers6 from "../assets/women/Blazers6.jpg";
-
-import Skirts1 from "../assets/women/Skirts.jpg";
-import Skirts2 from "../assets/women/Skirts2.jpg";
-import Skirts3 from "../assets/women/Skirts3.jpg";
-import Skirts4 from "../assets/women/Skirts4.jpg";
-import Skirts5 from "../assets/women/Skirts5.jpg";
-import Skirts6 from "../assets/women/Skirts6.jpg";
-
-import Shorts1 from "../assets/women/shorts1.jpg";
-import Shorts2 from "../assets/women/Shorts2.jpg";
-import Shorts3 from "../assets/women/Shorts3.jpg";
-import Shorts4 from "../assets/women/Shorts4.jpg";
-import Shorts5 from "../assets/women/Shorts5.jpg";
-import Shorts6 from "../assets/women/Shorts6.jpg";
-
-import tshirts1 from "../assets/women/t-shirt1.jpg";
-import tshirts2 from "../assets/women/t-shirt2.jpg";  
-import tshirts3 from "../assets/women/t-shirt3.jpg";
-import tshirts4 from "../assets/women/t-shirt4.jpg";
-import tshirts5 from "../assets/women/t-shirt5.jpg";
-import tshirts6 from "../assets/women/t-shirt6.jpg";
-
-// 🔥 PRODUCTS (same)
-const products = [
-  { id: 1, name: "Dress 1", price: "₹1499", category: "Dress", img: dress1 },
-  { id: 2, name: "Dress 2", price: "₹1499", category: "Dress", img: dress2 },
-  { id: 3, name: "Dress 3", price: "₹1499", category: "Dress", img: dress3 },
-  { id: 4, name: "Dress 4", price: "₹1499", category: "Dress", img: dress4 },
-  { id: 5, name: "Dress 5", price: "₹1499", category: "Dress", img: dress5 },
-  { id: 6, name: "Dress 6", price: "₹1499", category: "Dress", img: dress6 },
-
-  { id: 7, name: "Top 1", price: "₹799", category: "Top", img: top1 },
-  { id: 8, name: "Top 2", price: "₹799", category: "Top", img: top2 },
-  { id: 9, name: "Top 3", price: "₹799", category: "Top", img: top3 },
-  { id: 10, name: "Top 4", price: "₹799", category: "Top", img: top4 },
-  { id: 11, name: "Top 5", price: "₹799", category: "Top", img: top5 },
-  { id: 12, name: "Top 6", price: "₹799", category: "Top", img: top6 },
-
-  { id: 13, name: "Saree 1", price: "₹1999", category: "Saree", img: saree1 },
-  { id: 14, name: "Saree 2", price: "₹1999", category: "Saree", img: saree2 },
-  { id: 15, name: "Saree 3", price: "₹1999", category: "Saree", img: saree3 },
-  { id: 16, name: "Saree 4", price: "₹1999", category: "Saree", img: saree4 },
-  { id: 17, name: "Saree 5", price: "₹1999", category: "Saree", img: saree5 },
-  { id: 18, name: "Saree 6", price: "₹1999", category: "Saree", img: saree6 },
-
-  { id: 19, name: "Pants 1", price: "₹1299", category: "Pants", img: pents1 },
-  { id: 20, name: "Pants 2", price: "₹1299", category: "Pants", img: pents2 },
-  { id: 21, name: "Pants 3", price: "₹1299", category: "Pants", img: pents3 },
-  { id: 22, name: "Pants 4", price: "₹1299", category: "Pants", img: pents4 },
-  { id: 23, name: "Pants 5", price: "₹1299", category: "Pants", img: pents5 },
-  { id: 24, name: "Pants 6", price: "₹1299", category: "Pants", img: pents6 },
-
-  { id: 25, name: "Blazer 1", price: "₹2499", category: "Blazer", img: Blazers1 },
-  { id: 26, name: "Blazer 2", price: "₹2499", category: "Blazer", img: Blazers2 },
-  { id: 27, name: "Blazer 3", price: "₹2499", category: "Blazer", img: Blazers3 },
-  { id: 28, name: "Blazer 4", price: "₹2499", category: "Blazer", img: Blazers4 },
-  { id: 29, name: "Blazer 5", price: "₹2499", category: "Blazer", img: Blazers5 },
-  { id: 30, name: "Blazer 6", price: "₹2499", category: "Blazer", img: Blazers6 },
-
-  { id: 31, name: "Skirt 1", price: "₹999", category: "Skirt", img: Skirts1 },
-  { id: 32, name: "Skirt 2", price: "₹999", category: "Skirt", img: Skirts2 },
-  { id: 33, name: "Skirt 3", price: "₹999", category: "Skirt", img: Skirts3 },
-  { id: 34, name: "Skirt 4", price: "₹999", category: "Skirt", img: Skirts4 },
-  { id: 35, name: "Skirt 5", price: "₹999", category: "Skirt", img: Skirts5 },
-  { id: 36, name: "Skirt 6", price: "₹999", category: "Skirt", img: Skirts6 },
-
-  { id: 37, name: "Shorts 1", price: "₹699", category: "Shorts", img: Shorts1 },
-  { id: 38, name: "Shorts 2", price: "₹699", category: "Shorts", img: Shorts2 },
-  { id: 39, name: "Shorts 3", price: "₹699", category: "Shorts", img: Shorts3 },
-  { id: 40, name: "Shorts 4", price: "₹699", category: "Shorts", img: Shorts4 },
-  { id: 41, name: "Shorts 5", price: "₹699", category: "Shorts", img: Shorts5 },
-  { id: 42, name: "Shorts 6", price: "₹699", category: "Shorts", img: Shorts6 },
-
-  { id: 43, name: "T-Shirt 1", price: "₹499", category: "T-Shirt", img: tshirts1 },
-  { id: 44, name: "T-Shirt 2", price: "₹499", category: "T-Shirt", img: tshirts2 },
-  { id: 45, name: "T-Shirt 3", price: "₹499", category: "T-Shirt", img: tshirts3 },
-  { id: 46, name: "T-Shirt 4", price: "₹499", category: "T-Shirt", img: tshirts4 },
-  { id: 47, name: "T-Shirt 5", price: "₹499", category: "T-Shirt", img: tshirts5 },
-  { id: 48, name: "T-Shirt 6", price: "₹499", category: "T-Shirt", img: tshirts6 },
-
-];
-const categories = ["All", ...new Set(products.map(p => p.category))];
+import { Helmet } from "react-helmet-async";
+import { products } from "../data/womenproducts";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 export default function WomenStyle() {
-  const location = useLocation();
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const [selectedSize, setSelectedSize] = useState("");
   const query = new URLSearchParams(location.search);
-  const urlCategory = query.get("category");
   const productId = query.get("id");
 
-  const [selectedCategory, setSelectedCategory] = useState(urlCategory || "All");
+  const selectedProduct = products.find(
+    (p) => p.id === Number(productId)
+  );
 
-  // ✅ SELECTED PRODUCT
-  const selectedProduct = products.find(p => p.id === Number(productId));
+  const gallery = selectedProduct?.images || [];
+
+  const [activeImage, setActiveImage] = useState("");
 
   useEffect(() => {
-    if (urlCategory) setSelectedCategory(urlCategory);
-  }, [urlCategory]);
+    if (gallery.length > 0) {
+      setActiveImage(gallery[0]);
+    }
 
-  // ✅ FILTER
-  const filtered =
-    selectedCategory === "All"
-      ? products
-      : products.filter((p) => p.category === selectedCategory);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [productId]);
 
-  // ✅ CATEGORY CLICK
-  const handleCategory = (cat) => {
-    setSelectedCategory(cat);
-    navigate(`/womensstyle${cat !== "All" ? `?category=${cat}` : ""}`);
-  };
-
-  // ✅ PRODUCT CLICK → URL CHANGE
-  const openProduct = (item) => {
-    navigate(`/womensstyle?id=${item.id}`);
-  };
-
-  // ✅ BACK TO GRID
-  const goBack = () => {
-    navigate("/womensstyle");
-  };
-
-  // ✅ WhatsApp
   const handleWhatsApp = (item) => {
-    const phone = "91XXXXXXXXXX";
-    const message = `Hi, I want to buy:\n${item.name} - ${item.price}`;
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`);
-  };
+    const phone = "916353771878";
 
-  // ===============================
-  // 🔥 PRODUCT DETAIL VIEW
-  // ===============================
+    const message = `
+🛍️ NEW ORDER REQUEST
+
+Product: ${item.name}
+Price: ${item.price}
+Category: ${item.category}
+Size: ${selectedSize || "Not selected"}
+
+✨ Details:
+Colour: ${item.details?.colour || "-"}
+Fabric: ${item.details?.fabric || "-"}
+Style: ${item.details?.style || "-"}
+Vibe: ${item.details?.vibe || "-"}
+
+📝 Description:
+${item.description || ""}
+
+Please confirm availability.
+`;
+
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+  };
+  const seoTitle =
+    "Women Fashion Collection | Premium Dresses, Tops, Saree & Western Wear";
+
+  const seoDesc =
+    "Explore premium women's fashion collection including dresses, tops, sarees, skirts, pants and stylish outfits.";
+
   if (selectedProduct) {
     return (
-      <div className="min-h-screen pt-24 px-6 md:px-16">
+      <div className="pt-24 md:pt-28 max-w-7xl mx-auto px-4 pb-16">
+        <Helmet>
+          <title>{selectedProduct.name}</title>
+          <meta name="description" content={selectedProduct.description} />
+        </Helmet>
 
         <button
-          onClick={goBack}
-          className="mb-6 text-sm underline"
+          onClick={() => navigate("/womensstyle")}
+          className="mb-6 text-sm"
         >
           ← Back
         </button>
 
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+        {/* LEFT + RIGHT */}
+        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-8 items-start">
 
-          {/* IMAGE */}
-          <div className="bg-gray-100 p-4 rounded-xl">
-            <img
-              src={selectedProduct.img}
-              className="w-full max-h-[500px] object-contain"
-            />
+          {/* LEFT */}
+          <div>
+            <div className="flex flex-col md:flex-row gap-4">
 
-            <div className="flex gap-3 mt-4">
-              <img src={selectedProduct.img} className="w-20 h-20 object-cover rounded border" />
-              <img src={selectedProduct.img} className="w-20 h-20 object-cover rounded border" />
-              <img src={selectedProduct.img} className="w-20 h-20 object-cover rounded border" />
+              {/* Thumbnails */}
+              <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
+                {gallery.map((img, index) => (
+                  <img
+                    key={index}
+                    src={img}
+                    alt=""
+                    onClick={() => setActiveImage(img)}
+                    className={`w-16 h-22 md:w-24 md:h-28 object-cover bg-white border cursor-pointer flex-shrink-0 ${activeImage === img
+                      ? "border-purple-600"
+                      : "border-gray-200"
+                      }`}
+                  />
+                ))}
+              </div>
+
+              {/* Main Image */}
+              <div className="flex-1 border bg-white flex items-center justify-center">
+                <img
+                  src={activeImage || gallery[0]}
+                  alt={selectedProduct.name}
+                  className="
+                  w-full
+                  h-[390px]
+                  sm:h-[420px]
+                  md:h-[700px]
+                 
+                  bg-white
+                  p-2
+                  group-hover:scale-105
+                  transition duration-500
+                "
+                />
+              </div>
             </div>
           </div>
+          {/* RIGHT */}
+          <div className="pt-4 lg:pt-2">
 
-          {/* DETAILS */}
-          <div>
-            <h1 className="text-3xl font-semibold mb-2">{selectedProduct.name}</h1>
-            <p className="text-2xl font-bold mb-2">{selectedProduct.price}</p>
-            <p className="text-gray-500 mb-6">Premium quality product</p>
+            {/* Badge */}
+            <p className="uppercase tracking-[4px] text-purple-500 text-xs md:text-sm">
+              New Collection
+            </p>
 
-            {/* SIZE */}
-            <p className="font-medium mb-2">Select Size</p>
-            <div className="flex gap-3 mb-6">
-              {["M", "L", "XL"].map((size) => (
-                <button
-                  key={size}
-                  className="w-12 h-12 border rounded-full hover:bg-black hover:text-white transition"
-                >
-                  {size}
-                </button>
-              ))}
+            {/* Name */}
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-light mt-4">
+              {selectedProduct.name}
+            </h1>
+
+            {/* Price */}
+            <p className="text-2xl sm:text-3xl md:text-5xl font-bold text-purple-700 mt-5">
+              {selectedProduct.price}
+            </p>
+
+            {/* Description */}
+            <p className="mt-5 text-gray-600 text-sm md:text-base leading-relaxed">
+              {selectedProduct.description}
+            </p>
+
+            {/* DETAILS BOX */}
+            <div className="mt-6 p-4 border bg-white rounded-xl space-y-2 shadow-sm">
+
+              <h3 className="uppercase tracking-[3px] text-sm font-semibold text-purple-700 mb-2">
+                Product Details
+              </h3>
+
+              <p className="text-sm md:text-base">
+                <span className="font-semibold">Colour:</span>{" "}
+                {selectedProduct.details?.colour}
+              </p>
+
+              <p className="text-sm md:text-base">
+                <span className="font-semibold">Fabric:</span>{" "}
+                {selectedProduct.details?.fabric}
+              </p>
+
+              <p className="text-sm md:text-base">
+                <span className="font-semibold">Style:</span>{" "}
+                {selectedProduct.details?.style}
+              </p>
+
+              <p className="text-sm md:text-base">
+                <span className="font-semibold">Vibe:</span>{" "}
+                {selectedProduct.details?.vibe}
+              </p>
+
             </div>
 
-            {/* BUTTON */}
+            {/* SIZE SELECT */}
+            <div className="mt-8 md:mt-10">
+
+              <h3 className="uppercase tracking-[3px] text-sm mb-4">
+                Select Size
+              </h3>
+
+              <div className="flex flex-wrap gap-3">
+
+                {selectedProduct?.sizes?.map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`w-12 h-12 md:w-16 md:h-16 border transition ${selectedSize === size
+                        ? "bg-purple-700 text-white"
+                        : "hover:bg-purple-700 hover:text-white"
+                      }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+
+              </div>
+
+            </div>
+
+
+
             <button
               onClick={() => handleWhatsApp(selectedProduct)}
-              className="w-full bg-green-500 text-white py-3 rounded-lg text-lg hover:bg-green-600 transition"
+              className="mt-8 md:mt-10 w-full bg-purple-700 hover:bg-purple-800 text-white py-3 md:py-4 uppercase tracking-[2px] text-sm md:text-lg transition"
             >
               Order on WhatsApp
             </button>
 
-            {/* FEATURES */}
-            <div className="mt-6 text-gray-600 space-y-2">
-              <p>🚚 Free delivery above ₹999</p>
-              <p>🔁 Easy 7-day returns</p>
-              <p>✔ Premium quality guaranteed</p>
-            </div>
           </div>
 
         </div>
@@ -235,75 +216,154 @@ export default function WomenStyle() {
     );
   }
 
-  // ===============================
-  // 🔥 NORMAL GRID VIEW
-  // ===============================
   return (
-    <div className="bg-white min-h-screen pt-24">
+    <div className="pt-20 md:pt-24 min-h-screen bg-[#fcf8ff]">
+      <Helmet>
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDesc} />
+      </Helmet>
 
-      {/* TITLE */}
-      <h1 className="text-3xl font-bold text-center mb-6">
-        Women Collection {selectedCategory !== "All" && `- ${selectedCategory}`}
-      </h1>
+      <div className="relative pt-8 pb-10 overflow-hidden bg-gradient-to-b from-[#fcf8ff] via-white to-[#fcf8ff]">
 
-      {/* FILTER */}
-      <div className="flex justify-center gap-3 flex-wrap mb-6">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => handleCategory(cat)}
-            className={`px-4 py-1 rounded-full border text-sm transition ${
-              selectedCategory === cat
-                ? "bg-black text-white"
-                : "hover:bg-black hover:text-white"
-            }`}
+        {/* Left Flower */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 0.12, x: 0 }}
+          transition={{ duration: 1 }}
+          className="absolute left-0 top-0 text-[90px] md:text-[130px] select-none pointer-events-none"
+        >
+          🌸
+        </motion.div>
+
+        {/* Right Flower */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 0.12, x: 0 }}
+          transition={{ duration: 1 }}
+          className="absolute right-0 bottom-0 text-[90px] md:text-[130px] select-none pointer-events-none"
+        >
+          🪻
+        </motion.div>
+
+        {/* Floating Flowers */}
+        <motion.div
+          animate={{ y: [0, -10, 0], rotate: [0, 8, 0] }}
+          transition={{ duration: 4, repeat: Infinity }}
+          className="absolute left-[22%] top-6 text-xl opacity-30"
+        >
+          ✿
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, 10, 0], rotate: [0, -8, 0] }}
+          transition={{ duration: 5, repeat: Infinity }}
+          className="absolute right-[22%] top-10 text-xl opacity-30"
+        >
+          ❀
+        </motion.div>
+
+        <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
+
+          {/* Premium Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-block px-5 py-2  bg-purple-100 border border-purple-200 mb-4"
           >
-            {cat}
-          </button>
-        ))}
+            <span className="uppercase tracking-[5px] text-[11px] font-semibold text-purple-700">
+              Premium Fashion
+            </span>
+          </motion.div>
+
+          {/* Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-light leading-tight"
+          >
+            <span className="bg-gradient-to-r from-purple-800 via-fuchsia-500 to-purple-700 bg-clip-text text-transparent">
+              Women's Premium
+            </span>
+
+            <br />
+
+            <span className="font-serif italic text-[#3b1d57]">
+              Collection
+            </span>
+          </motion.h1>
+
+          {/* Divider */}
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 90 }}
+            transition={{ duration: 0.8 }}
+            className="h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto mt-5"
+          />
+        </div>
       </div>
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
 
-      {/* GRID */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+          {products.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => navigate(`/womensstyle?id=${item.id}`)}
+              className="cursor-pointer group"
+            >
+              <div className="relative overflow-hidden border bg-white">
 
-        {filtered.map((item) => (
-          <div
-            key={item.id}
-            className="group cursor-pointer"
-            onClick={() => openProduct(item)}
-          >
-            <div className="relative overflow-hidden rounded-xl">
+                <img
+                  src={item.images?.[0]}
+                  alt={item.name}
+                  className="
+              w-full
+              h-[220px]
+              sm:h-[360px]
+              md:h-[440px]
+              object-cover
+              bg-white
+              p-2
+              group-hover:scale-105
+              transition duration-500
+            "
+                />
 
-              <img
-                src={item.img}
-                className="w-full h-80 object-cover transition duration-700
-                           group-hover:scale-110
-                           group-hover:blur-[2px]
-                           group-hover:brightness-75"
-              />
+                {/* Hover Overlay */}
+                <div
+                  className="
+              absolute inset-0
+              flex flex-col
+              justify-end
+              items-center
+              text-white
+              p-4
+              opacity-0
+              group-hover:opacity-100
+              transition duration-300
+            "
+                >
+                  <div className="absolute bottom-0 left-0 w-full text-white py-3 px-4">
 
-              <div className="absolute inset-0 bg-black/0 
-                              group-hover:bg-black/50 
-                              transition"></div>
 
-              <div className="absolute bottom-0 p-4 text-white
-                              translate-y-full group-hover:translate-y-0
-                              transition">
 
-                <p className="font-semibold">{item.name}</p>
-                <p className="text-sm">{item.price}</p>
+                    <button
+                      onClick={() => handleWhatsApp(selectedProduct)}
+                      className="mt-3 md:mt-5 w-full max-w-[180px] bg-purple-700 hover:bg-purple-800 text-white py-2 md:py-2.5 uppercase tracking-[1px] text-xs md:text-sm transition "
+                    >
+                      Order on WhatsApp
+                    </button>
 
-                <button className="mt-2 bg-white text-black px-3 py-1 text-xs rounded">
-                  View
-                </button>
+                  </div>
+                </div>
+
               </div>
-
             </div>
-          </div>
-        ))}
+          ))}
 
+        </div>
       </div>
-
     </div>
   );
 }

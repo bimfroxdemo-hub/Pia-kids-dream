@@ -538,7 +538,6 @@ const productsData = {
 
       images: [
         wedding[29],
-        wedding[30],
         wedding[31],
         wedding[32],
       ],
